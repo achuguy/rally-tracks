@@ -1,0 +1,20 @@
+{
+    "query": {
+        "bool": {
+            "must": [],
+            "filter": [
+                {
+                    "range": {
+                        "@timestamp": {
+                            "format": "strict_date_optional_time",
+                            "gte": "2024-01-29T04:59:00.000Z",
+                            "lte": "2024-02-01T00:00:00.000Z"
+                        }
+                    }
+                }
+            ],
+            "should": [],
+            "must_not": []
+        }
+    }
+}

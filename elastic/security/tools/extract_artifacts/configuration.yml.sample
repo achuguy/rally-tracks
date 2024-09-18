@@ -1,0 +1,19 @@
+---
+source:
+  es_url: "https://source.es.url/"
+  api_key:
+    encoded: "api_key"
+    beats: "beats:api_key"
+  basic_auth:
+    username: "elastic"
+    password: "changeme"
+  verify_certs: False
+  ca_certs: "./http_ca.crt"
+data_folder: "./artifacts"
+indices:
+  - logs-endpoint.events.file-default
+  - logs-endpoint.events.library-default
+  - logs-endpoint.events.network-default
+  - logs-endpoint.events.process-default
+  - logs-endpoint.events.registry-default
+  - logs-endpoint.events.security-default
