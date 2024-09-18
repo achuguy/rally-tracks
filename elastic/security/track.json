@@ -95,11 +95,13 @@
   "component-templates": [
     {
       "name": "track-shared-logsdb-mode",
-      "template": "./templates/component/track-shared-logsdb-mode.json"
+      "template": "./templates/component/track-shared-logsdb-mode.json",
+      "template-path": "component_template"
     },
     {
       "name": "track-custom-mappings",
-      "template": "./templates/component/track-custom-mappings.json"
+      "template": "./templates/component/track-custom-mappings.json",
+      "template-path": "component_template"
     },
     {
       "name": "ecs@mappings",

@@ -6,6 +6,7 @@ import argparse
 import gzip
 import json
 import os
+import shutil
 import time
 
 import yaml
@@ -287,8 +288,9 @@ def main():
         artifact_folder = config["data_folder"]
         if not artifact_folder.endswith("/"):
             artifact_folder += "/"
-        if not os.path.exists(artifact_folder):
-            os.makedirs(artifact_folder)
+        if os.path.exists(artifact_folder):
+            os.rmdir(artifact_folder)
+        shutil.copytree("track_artifacts", artifact_folder)
     else:
         print("No folder specified for storing extracts.  " "The data will be stored in the current folder.")
 
