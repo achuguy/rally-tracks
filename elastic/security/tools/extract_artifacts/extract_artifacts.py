@@ -271,7 +271,6 @@ def main():
     doc_limit = args.limit
     query_file = args.query
 
-    print(args.extract_docs)
     print(f"Configuration File: {configuration_file}")
     print(f"Document Limit:     {doc_limit}")
     print(f"Query File:         {query_file}")
@@ -288,11 +287,12 @@ def main():
         artifact_folder = config["data_folder"]
         if not artifact_folder.endswith("/"):
             artifact_folder += "/"
-        if os.path.exists(artifact_folder):
-            os.rmdir(artifact_folder)
-        shutil.copytree("track_artifacts", artifact_folder)
     else:
-        print("No folder specified for storing extracts.  " "The data will be stored in the current folder.")
+        print("No folder specified for storing extracts.  " "The data will be stored in the `./artifacts`.")
+        artifact_folder = "./artifacts/"
+    if os.path.exists(artifact_folder):
+        os.rmdir(artifact_folder)
+    shutil.copytree("track_artifacts", artifact_folder)
 
     def get_es_kwargs(config):
         es_kwargs = {"http_compress": True, "request_timeout": 300, "hosts": config["es_url"]}
