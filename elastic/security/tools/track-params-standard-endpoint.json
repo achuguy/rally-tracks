@@ -1,8 +1,13 @@
 {
   "start_date": "2024-05-01",
-  "end_date": "2024-05-02",
-  "raw_data_volume_per_day": "10GB",
+  "end_date": "2024-05-04",
+  "bulk_indexing_clients": 24,
+  "data_generation_clients": 16,
+  "raw_data_volume_per_day": "5GB",
   "max_generated_corpus_size": "40GB",
+  "number_of_replicas": 1,
+  "number_of_shards": 3,
+  "wait_for_status": "green",
   "integration_ratios": {
     "logs-endpoint": {
       "corpora": {
@@ -12,26 +17,6 @@
         "endpoint-events-process": 0.3,
         "endpoint-events-registry": 0.1,
         "endpoint-events-security": 0.1
-      }
-    },
-    "auditbeat": {
-      "corpora": {
-        "auditbeat-security": 1.0
-      }
-    },
-    "filebeat": {
-      "corpora": {
-        "filebeat-security": 1.0
-      }
-    },
-    "metricbeat": {
-      "corpora": {
-        "metricbeat-security": 1.0
-      }
-    },
-    "winlogbeat": {
-      "corpora": {
-        "winlogbeat-security": 1.0
       }
     }
   },
