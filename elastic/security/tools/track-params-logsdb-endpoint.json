@@ -1,9 +1,9 @@
 {
-  "start_date": "2020-01-01",
-  "end_date": "2020-01-02",
+  "start_date": "2024-05-01",
+  "end_date": "2024-05-04",
   "bulk_indexing_clients": 24,
   "data_generation_clients": 16,
-  "raw_data_volume_per_day": "1GB",
+  "raw_data_volume_per_day": "5GB",
   "max_generated_corpus_size": "40GB",
   "number_of_replicas": 1,
   "number_of_shards": 3,
@@ -20,5 +20,5 @@
       }
     }
   },
-  "index_mode": "standard"
+  "index_mode": "logsdb"
 }

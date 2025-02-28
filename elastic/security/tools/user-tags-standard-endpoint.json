@@ -1,0 +1,12 @@
+{
+  "env-id": "2b61c966-3992-4077-9a3c-34c913087d16",
+  "created-by": "esbench",
+  "setup": "esbench",
+  "host-username": "jchu",
+  "git-username": "jchu",
+  "division": "Engineering",
+  "org": "Security",
+  "team": "sec-eng-prod",
+  "project": "security-benchmarking",
+  "index-mode": "standard-endpoint-50"
+}

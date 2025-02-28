@@ -35,5 +35,5 @@
       }
     }
   },
-  "index_mode": "standard"
+  "index_mode": "logsdb"
 }
