@@ -18,6 +18,11 @@
         {% endif %}
       },
       "mappings": {
+        {% if source_mode %}
+        "_source": {
+              "mode": {{ source_mode | tojson }}
+        },
+        {% endif %}
         "_meta": {
           "package": {
             "name": "endpoint"

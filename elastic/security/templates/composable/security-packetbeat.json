@@ -656,6 +656,11 @@
       }
     },
     "mappings" : {
+      {% if source_mode %}
+      "_source": {
+        "mode": {{ source_mode | tojson }}
+      },
+      {% endif %}
       "_meta" : {
         "beat" : "packetbeat",
         "version" : "7.16.0"

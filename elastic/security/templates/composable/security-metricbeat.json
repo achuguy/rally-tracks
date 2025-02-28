@@ -851,6 +851,11 @@
       }
     },
     "mappings" : {
+      {% if source_mode %}
+      "_source": {
+        "mode": {{ source_mode | tojson }}
+      },
+      {% endif %}
       "_meta" : {
         "beat" : "metricbeat",
         "version" : "7.16.0"
