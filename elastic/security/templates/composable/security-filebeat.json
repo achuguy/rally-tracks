@@ -7,7 +7,7 @@
       "index" : {
         {% if lifecycle == "ilm" or (not lifecycle and build_flavor == "default") %}
           "lifecycle": {
-            "name": "security"
+            "name": "logs"
           },
         {%- elif lifecycle == "dlm" or (not lifecycle and build_flavor == "serverless") %}
             "lifecycle": {},
