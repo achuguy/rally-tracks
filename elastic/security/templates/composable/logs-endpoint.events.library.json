@@ -8,7 +8,12 @@
       "settings": {
         {% if index_mode %}
         "index": {
-          "mode": {{ index_mode | tojson }}
+          "mode": {{ index_mode | tojson }},
+          "mapping": {
+            "source": {
+              "mode": "synthetic"
+            }
+          }
         }
         {% endif %}
       },
