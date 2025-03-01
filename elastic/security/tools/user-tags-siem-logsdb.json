@@ -1,0 +1,14 @@
+{
+  "env-id": "bbbd2c1a-a835-4bac-852b-1147bf3b6be2",
+  "created-by": "esbench",
+  "setup": "esbench",
+  "host-username": "jchu",
+  "git-username": "jchu",
+  "division": "Engineering",
+  "org": "Security",
+  "team": "sec-eng-prod",
+  "project": "security-benchmarking",
+  "index-mode": "logsdb",
+  "source": "synthetic",
+  "data": "100gb-siem"
+}

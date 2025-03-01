@@ -3,7 +3,7 @@
   "end_date": "2020-01-02",
   "bulk_indexing_clients": 24,
   "data_generation_clients": 16,
-  "raw_data_volume_per_day": "1GB",
+  "raw_data_volume_per_day": "100GB",
   "max_generated_corpus_size": "40GB",
   "number_of_replicas": 1,
   "number_of_shards": 3,
@@ -19,5 +19,7 @@
         "endpoint-events-security": 0.1
       }
     }
-  }
+  },
+  "index_mode": "logsdb",
+  "source_mode": "synthetic"
 }
