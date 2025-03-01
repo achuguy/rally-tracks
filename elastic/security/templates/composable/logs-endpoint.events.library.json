@@ -5,8 +5,19 @@
       "logs-endpoint.events.library-*"
     ],
     "template": {
-      "settings": {},
+      "settings": {
+        {% if index_mode %}
+        "index": {
+          "mode": {{ index_mode | tojson }}
+        }
+        {% endif %}
+      },
       "mappings": {
+        {% if source_mode %}
+        "_source": {
+          "mode": {{ source_mode | tojson }}
+        },
+        {% endif %}
         "_meta": {
           "package": {
             "name": "endpoint"
@@ -36,9 +47,6 @@
     "data_stream": {
       "hidden": false,
       "allow_custom_routing": false
-      {% if build_flavor != "serverless" %},
-      "failure_store": false
-      {% endif %}
     }
   }
 }

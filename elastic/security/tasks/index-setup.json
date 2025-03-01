@@ -6,16 +6,6 @@
     "param-source": "add-track-path"
   }
 },
-{%- if lifecycle == "ilm" or (not lifecycle and build_flavor != "serverless") %}
-{
-  "name": "insert-ilm",
-  "tags": ["setup"],
-  "operation": {
-    "operation-type": "create-ilm",
-    "param-source": "add-track-path"
-  }
-},
-{%- endif -%}
 {
   "name": "delete-all-datastreams",
   "tags": ["setup"],
