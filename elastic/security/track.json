@@ -101,59 +101,19 @@
   ],
   "component-templates": [
     {
-      "name": "track-shared-logsdb-mode",
-      "template": "./templates/component/track-shared-logsdb-mode.json"
+      "name": "endpoint@custom",
+      "template": "./templates/component/endpoint@custom.json"
     },
     {
       "name": "track-custom-mappings",
       "template": "./templates/component/track-custom-mappings.json"
     }
   ],
+{% if "auditbeat" in p_integration_ratios or "filebeat" in p_integration_ratios or "metricbeat" in p_integration_ratios
+or "packetbeat" in p_integration_ratios or "winlogbeat" in p_integration_ratios %}
   "composable-templates": [
 {% for integration in p_integration_ratios.keys() %}
 {% if integration == "logs-endpoint" %}
-    {
-        "name": "logs-endpoint.events.file",
-        "index-pattern": "logs-endpoint.events.file-*",
-        "delete-matching-indices": false,
-        "template": "./templates/composable/logs-endpoint.events.file.json",
-        "template-path": "index_template"
-    },
-    {
-        "name": "logs-endpoint.events.library",
-        "index-pattern": "logs-endpoint.events.library-*",
-        "delete-matching-indices": false,
-        "template": "./templates/composable/logs-endpoint.events.library.json",
-        "template-path": "index_template"
-    },
-    {
-        "name": "logs-endpoint.events.network",
-        "index-pattern": "logs-endpoint.events.network-*",
-        "delete-matching-indices": false,
-        "template": "./templates/composable/logs-endpoint.events.network.json",
-        "template-path": "index_template"
-    },
-    {
-        "name": "logs-endpoint.events.process",
-        "index-pattern": "logs-endpoint.events.process-*",
-        "delete-matching-indices": false,
-        "template": "./templates/composable/logs-endpoint.events.process.json",
-        "template-path": "index_template"
-    },
-    {
-        "name": "logs-endpoint.events.registry",
-        "index-pattern": "logs-endpoint.events.registry-*",
-        "delete-matching-indices": false,
-        "template": "./templates/composable/logs-endpoint.events.registry.json",
-        "template-path": "index_template"
-    },
-    {
-        "name": "logs-endpoint.events.security",
-        "index-pattern": "logs-endpoint.events.security-*",
-        "delete-matching-indices": false,
-        "template": "./templates/composable/logs-endpoint.events.security.json",
-        "template-path": "index_template"
-    }{{ ", " if not loop.last else "" }}
 {% else %}
     {
       "name": "{{ integration }}",
@@ -164,6 +124,7 @@
 {% endif %}
 {% endfor %}
   ],
+{% endif %}
   "corpora": [
 {% for integration in p_integration_ratios.keys() %}
 {% if integration == "logs-endpoint" %}
