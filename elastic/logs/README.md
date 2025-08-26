@@ -228,7 +228,8 @@ The following parameters are available:
 * `recovery_poll_timeout` (default: `1m`) - The maximum time to wait for additional translog operations before returning an empty result.
 * `recovery_small_max_batch_size` (default: `4MB`) - The maximum estimated size for the batch of translog operations to return.
 * `recovery_large_max_batch_size` (default: `32MB`) - The maximum estimated size for the batch of translog operations to return.
-* `recovery_max_operations_count` (default: `16777216`) - The maximum number of translog operations to return in a single batch.
+* `recovery_max_operations_count (default: `16777216`) - The maximum number of translog operations to return in a single batch.
+* `patterned_text_message_field` (default: `false`) - If true use `patterned_text` for all message fields, else `match_only_text`. 
 
 ### Data Download Parameters
 
@@ -404,6 +405,14 @@ Note: `include_target_throughput` parameter is ignored in this challenge.
 
 Runs the categorize-text aggregation with varying values of shard-size and with/without the use of a sampler
 aggregation. The challenge targets a specific set of indices by way of an index alias.
+
+### Reindex Data Stream (logging-reindex-data-stream)
+
+Restores a data stream from 7.x snapshots and reindexes all indices into version 8.x. 
+The snapshot parameters are used to define the correct snapshot, with `restore_data_streams` being the data stream to reindex.
+This challenge also uses the following task specific parameters:
+* `reindex_max_concurrent_indices` (default: 1) The maximum number of data stream backing indices that will be reindexed at the same time.
+* `reindex_max_requests_per_second` (default: 1000) The average maximum number of documents that will be reindexed per second, per backing index.
 
 ## Changing the Datasets
 

@@ -59,6 +59,8 @@
 {% set p_dsl_poll_interval = (dsl_poll_interval | default(false) ) %}
 {% set p_dsl_default_rollover = (dsl_default_rollover | default(false) ) %}
 {% set p_skip_fleet_globals = (skip_fleet_globals | default(false) ) %}
+{% set p_reindex_max_concurrent_indices = (reindex_max_concurrent_indices | default(1) ) %}
+{% set p_reindex_max_requests_per_second = (reindex_max_requests_per_second | default(1000) ) %}
 
 {% set p_recovery_target = (recovery_target | default('logs-k8-application.log-default') ) %}
 {% set p_recovery_from_seq_no = (recovery_seq_no | default(0) ) %}
@@ -70,6 +72,8 @@
 {% set p_worker_threads_enabled = (worker_threads_enabled | default(true))  %}
 
 {% set es_version = "7.13.2" %}
+
+{% set p_mapping = ( mapping | default('mapped') ) %}
 
 {% set p_integration_ratios = (integration_ratios | default({
     "kafka": {
@@ -213,9 +217,13 @@
     },
     {
       "name": "logs-redis.slowlog-default"
+    },
+    {
+      "name": "logs"
     }
   ],
   "component-templates": [
+    {% if p_mapping == "mapped" %}
     {% if build_flavor != "serverless" %}
       {
           "name": ".fleet_agent_id_verification-1",
@@ -337,6 +345,12 @@
         "name": "logs-system.syslog@custom",
         "template": "./templates/component/logs-system.syslog@custom.json"
     },
+    {% endif %}
+    {
+      "name": "logs@stream.layer",
+      "template": "./templates/component/logs@stream.layer.json",
+      "template-path": "component_template"
+    },
     {
         "name": "track-custom-mappings",
         "template": "./templates/component/track-custom-mappings.json"
@@ -359,6 +373,7 @@
     }
   ],
   "composable-templates": [
+    {% if p_mapping == "mapped" %}
     {
         "name": "logs-kafka.log",
         "index-pattern": "logs-kafka.log-*",
@@ -466,6 +481,23 @@
         "index-pattern": "auditbeatquantitative-*",
         "delete-matching-indices": false,
         "template": "./templates/composable/auditbeat-quantitative.json"
+    },
+    {% endif %}
+    {% if p_mapping == "unmapped" %}
+    {
+        "name": "logs-unmapped",
+        "index-pattern": "logs-*-*",
+        "delete-matching-indices": false,
+        "template": "./templates/composable/logs-dynamic-false.json",
+        "template-path": "index_template"
+    },
+    {% endif %}
+    {
+      "name": "logs@stream",
+      "index-pattern": "logs",
+      "delete-matching-indices": false,
+      "template": "./templates/composable/logs@stream.json",
+      "template-path": "index_template"
     }
   ],
   "corpora": [
